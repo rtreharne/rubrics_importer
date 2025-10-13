@@ -7,7 +7,7 @@ This toolkit provides utilities for managing **Canvas rubrics** and automating t
 | File | Purpose |
 |------|----------|
 | `rubric_import.py` | Imports rubrics into Canvas from CSV templates or files. |
-| `auto_assign_rubric.py` | Intelligently applies or replaces rubrics for assignments across multiple Canvas courses. Includes a dry-run mode for safe testing. |
+| `auto_assign_rubrics.py` | Intelligently applies or replaces rubrics for assignments across multiple Canvas courses. Includes a dry-run mode for safe testing. |
 | `filter_valid_courses.py` | Verifies a list of SIS course IDs against Canvas and filters out invalid ones. |
 
 ---
@@ -38,14 +38,15 @@ Imports rubrics into Canvas from local CSV rubric files. Each rubric is uploaded
 
 **Usage:**
 ```bash
-python rubric_import.py --csv rubrics_to_import.csv
+python rubric_import.py --source <source_course_id> --match "25/26" --csv valid_courses.csv
 ```
 
 **Example CSV format:**
 ```csv
-course_id,file_path
-12345,/path/to/rubric.csv
-67890,/path/to/another_rubric.csv
+sis_course_id
+BIOS101-202526
+BIOS102-202526
+...
 ```
 
 This script uses the Canvas endpoint:
@@ -67,7 +68,7 @@ It:
 
 **Usage:**
 ```bash
-python auto_assign_rubric.py --csv courses.csv --dry-run --log decisions.csv
+python auto_assign_rubrics.py --csv courses.csv --dry-run --log decisions.csv
 ```
 
 **Options:**
